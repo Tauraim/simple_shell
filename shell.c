@@ -16,54 +16,75 @@
  */
 int main(int argc, char **agv, char **env)
 {
-	char **argv, *store = NULL;
-	int i = 1, analyse = 0;
+	char *argv[100], *store, bin[100], cmd[100], *tok;
+	int i = 1, analyse = 0, n = 0;
 	size_t num = 0;
 	pid_t child_pid;
 	struct stat st;
 
-	while (1 < 2)
+	while (1)
 	{
 	printf("cisfun# ");
 	getline(&store, &num, stdin);
-	argv = malloc(sizeof(char) * 1024);
 
 	if (*store == '\n')
 	{
 	store = agv[0];
 	continue;
 	}
-
 	argv[0] = strtok(store, "\t\n");
+	argv[1] = NULL;
 
-	if (argv[0][0] == 'e' && argv[0][1] == 'x'
-	&& argv[0][2] == 'i' && argv[0][3] == 't')
+	if (argv[0][0] == 'e' && argv[0][1] == 'x' && argv[0][2] == 'i' && argv[0][3] == 't')
 	{
 	break;
 	_exit;
 	}
 
-	if (stat(argv[0], &st) == -1)
+	if (argv[0][0] == 'e' && argv[0][1] == 'n' && argv[0][2] == 'v')
 	{
-	printf("%s: No such file or directory\n", agv[0]);
+	while(env[n] != NULL)
+	{
+	printf("%s\n", env[n]);
+	n++;
+	}
 	continue;
 	}
 
-	else
-	while (strtok(NULL, "\t\n") != NULL)
+	if (stat(argv[0], &st) == -1)
+        {
+	strcpy(bin, "/bin/");
+	argv[0] = strtok(store, " \t\n");
+	strcat(bin, argv[0]);
+	argv[0] = bin;
+
+	tok = strtok(NULL, " \t\n");
+	i = 1;
+	while(tok != NULL)
 	{
-	argv[i] = strtok(NULL, "\t\n");
+	argv[i] = tok;
+	tok = strtok(NULL, " \t\n");
 	i++;
 	}
 	argv[i] = NULL;
+	}
+     
+	if(stat(argv[0], &st) == -1)
+	{
+        printf("%s: No such file or directory\n", store);
+	continue;
+	}
+
 	child_pid = fork();
 
 	if (child_pid == 0)
+	{
 	execve(argv[0], argv, env);
+	}
 
 	else
 	wait(&analyse);
 	}
-	free(argv);
+	
 	return (0);
 }

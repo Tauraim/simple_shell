@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * exit - exits the shell
+ * exit_shell - exits the shell
  * @argv: array of strings containing exit command
  * Return: success
  */

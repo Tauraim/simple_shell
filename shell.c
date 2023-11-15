@@ -18,7 +18,7 @@ int main(int argc, char **agv, char **env)
 
 	while (1)
 	{
-	printf("cisfun# ");
+	printf("($) ");
 	getline(&store, &num, stdin);
 
 	argv[0] = strtok(store, "\t\n");

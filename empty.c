@@ -8,10 +8,6 @@
  */
 char *empty_line(char *store, char **agv)
 {
-	if (*store == '\n')
-	{
 	store = agv[0];
-	}
-
 	return (store);
 }

@@ -32,10 +32,5 @@ int _stat(struct stat st, char **argv, char bin[100], char *tok, char *store)
 	argv[i] = NULL;
 	}
 
-	if (stat(argv[0], &st) == -1)
-	{
-	printf("%s: No such file or directory\n", store);
-	}
-
 	return (i);
 }

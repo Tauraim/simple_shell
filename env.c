@@ -18,6 +18,5 @@ char **_env(char **argv, char **env)
 	n++;
 	}
 	}
-
 	return (env);
 }

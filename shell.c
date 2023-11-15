@@ -9,7 +9,7 @@
  */
 int main(int argc, char **agv, char **env)
 {
-	char *argv[100], *store, bin[100], *tok = NULL;
+	char *argv[20], *store, bin[100], *tok = NULL;
 	int analyse = 0;
 	size_t num = 0;
 	pid_t child_pid;
@@ -28,7 +28,6 @@ int main(int argc, char **agv, char **env)
 	argv[0] = strtok(store, "\t\n");
 	argv[1] = NULL;
 	exit_shell(argv);
-
 	if (argv[0][0] == 'e' && argv[0][1] == 'n' && argv[0][1] == 'v')
 	{
 	_env(argv, env);
@@ -41,7 +40,6 @@ int main(int argc, char **agv, char **env)
 	continue;
 	}
 	child_pid = fork();
-
 	if (child_pid == 0)
 	execve(argv[0], argv, env);
 	else

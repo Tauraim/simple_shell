@@ -16,11 +16,12 @@
  */
 int main(int argc, char **agv, char **env)
 {
-	char *argv[100], *store, bin[100], cmd[100], *tok;
+	char *argv[100], *store, bin[100], *tok;
 	int i = 1, analyse = 0, n = 0;
 	size_t num = 0;
 	pid_t child_pid;
 	struct stat st;
+	(void)argc;
 
 	while (1)
 	{
@@ -38,7 +39,7 @@ int main(int argc, char **agv, char **env)
 	if (argv[0][0] == 'e' && argv[0][1] == 'x' && argv[0][2] == 'i' && argv[0][3] == 't')
 	{
 	break;
-	_exit;
+	_exit(98);	
 	}
 
 	if (argv[0][0] == 'e' && argv[0][1] == 'n' && argv[0][2] == 'v')
